@@ -1,0 +1,59 @@
+<resources>
+    <string name="app_name">Hangman</string>
+    <string-array name="category">
+        <item>MOVIES</item>
+        <item>BOOKS</item>
+        <item>SPORTS</item>
+        <item>TV SHOWS</item>
+        <item>PERSONALITIES</item>
+        <item>ANIMALS</item>
+        <item>COUNTRIES</item>
+        <item>FASHION</item>
+        <item>DICTIONARY</item>
+        <item>MUSIC</item>
+    </string-array>
+
+    <string-array name="descriptions">
+        <item>Movies, Actors, Awards and More</item>
+        <item>Books and Authors</item>
+        <item>Sports and Sportsmen</item>
+        <item>TV Serials, Actors, Awards etc</item>
+        <item>Famous persons</item>
+        <item>All about Animals</item>
+        <item>Explore the World !</item>
+        <item>Clothes, Shoes, Accessories etc</item>
+        <item>Play and learn new words</item>
+        <item>Musicians</item>
+    </string-array>
+    <string name="title_activity_gameplay">GameplayActivity</string>
+
+    <string name="button_letter_a">A</string>
+    <string name="button_letter_b">B</string>
+    <string name="button_letter_c">C</string>
+    <string name="button_letter_d">D</string>
+    <string name="button_letter_e">E</string>
+    <string name="button_letter_f">F</string>
+    <string name="button_letter_g">G</string>
+    <string name="button_letter_h">H</string>
+    <string name="button_letter_i">I</string>
+    <string name="button_letter_j">J</string>
+    <string name="button_letter_k">K</string>
+    <string name="button_letter_l">L</string>
+    <string name="button_letter_m">M</string>
+    <string name="button_letter_n">N</string>
+    <string name="button_letter_o">O</string>
+    <string name="button_letter_p">P</string>
+    <string name="button_letter_q">Q</string>
+    <string name="button_letter_r">R</string>
+    <string name="button_letter_s">S</string>
+    <string name="button_letter_t">T</string>
+    <string name="button_letter_u">U</string>
+    <string name="button_letter_v">V</string>
+    <string name="button_letter_w">W</string>
+    <string name="button_letter_x">X</string>
+    <string name="button_letter_y">Y</string>
+    <string name="button_letter_z">Z</string>
+    <string name="button_go_home">go home</string>
+    <string name="button_next">next one</string>
+
+</resources>

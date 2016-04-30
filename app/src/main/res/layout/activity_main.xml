@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.charan.hangman.MainActivity">
+
+
+    <com.flaviofaria.kenburnsview.KenBurnsView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/swag"
+        android:src="@drawable/backdrop1"/>
+    <Button android:background="@drawable/circle_button"
+        android:layout_height="100dp"
+        android:layout_width="100dp"
+        android:text="PLAY !"
+        android:textAllCaps="true"
+        android:fontFamily="sans-serif-condensed"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:textColor="#333"
+        android:id="@+id/play_button"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="103dp"
+        android:elevation="2dp" />
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/swag_header"
+        android:src="@drawable/header_image"
+
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="93dp"
+        android:layout_above="@+id/play_button"
+        android:layout_centerHorizontal="true"/>
+</RelativeLayout>
