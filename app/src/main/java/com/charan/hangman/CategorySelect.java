@@ -19,7 +19,6 @@ import java.util.ArrayList;
 
 public class CategorySelect extends AppCompatActivity {
     ListView listView;
-    Intent intent;
     String categories[] = {"Movies","Books","Sports","TV Shows","Personalities","Animals","Countries","Fashion","Dictionary","Music"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,36 +32,46 @@ public class CategorySelect extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch(position){
+                    //movies
                     case 0: Intent intent = new Intent(CategorySelect.this,GameplayActivity.class);
-                        intent.putExtra("category",0);
+                        intent.putExtra("level",position);
                         startActivity(intent);
-                    case 1: intent = new Intent(CategorySelect.this,GameplayActivity.class);
-                        intent.putExtra("category",1);
-                        startActivity(intent);
-                    case 2:  intent = new Intent(CategorySelect.this,GameplayActivity.class);
-                        intent.putExtra("category",2);
-                        startActivity(intent);
-                    case 3:  intent = new Intent(CategorySelect.this,GameplayActivity.class);
-                        intent.putExtra("category",3);
-                        startActivity(intent);
-                    case 4:  intent = new Intent(CategorySelect.this,GameplayActivity.class);
-                        intent.putExtra("category",4);
-                        startActivity(intent);
-                    case 5:  intent = new Intent(CategorySelect.this,GameplayActivity.class);
-                        intent.putExtra("category",5);
-                        startActivity(intent);
-                    case 6:  intent = new Intent(CategorySelect.this,GameplayActivity.class);
-                        intent.putExtra("category",6);
-                        startActivity(intent);
-                    case 7:  intent = new Intent(CategorySelect.this,GameplayActivity.class);
-                        intent.putExtra("category",7);
-                        startActivity(intent);
-                    case 8:  intent = new Intent(CategorySelect.this,GameplayActivity.class);
-                        intent.putExtra("category",8);
-                        startActivity(intent);
-                    case 9:  intent = new Intent(CategorySelect.this,GameplayActivity.class);
-                        intent.putExtra("category",9);
-                        startActivity(intent);
+                        //books
+                    case 1:Intent intent1 = new Intent(CategorySelect.this,GameplayActivity.class);
+                        intent1.putExtra("level",position);
+                        startActivity(intent1);
+                        //sports
+                    case 2: Intent intent2 = new Intent(CategorySelect.this,GameplayActivity.class);
+                        intent2.putExtra("level",position);
+                        startActivity(intent2);
+                        //tv shows
+                    case 3: Intent intent3 = new Intent(CategorySelect.this,GameplayActivity.class);
+                        intent3.putExtra("level",position);
+                        startActivity(intent3);
+                        //personalities
+                    case 4: Intent intent4 = new Intent(CategorySelect.this,GameplayActivity.class);
+                        intent4.putExtra("level",position);
+                        startActivity(intent4);
+                        //animals
+                    case 5: Intent intent5 = new Intent(CategorySelect.this,GameplayActivity.class);
+                        intent5.putExtra("level",position);
+                        startActivity(intent5);
+                        //countries
+                    case 6: Intent intent6 = new Intent(CategorySelect.this,GameplayActivity.class);
+                        intent6.putExtra("level",position);
+                        startActivity(intent6);
+                        //fashion
+                    case 7: Intent intent7 = new Intent(CategorySelect.this,GameplayActivity.class);
+                        intent7.putExtra("level",position);
+                        startActivity(intent7);
+                        //dictionary
+                    case 8: Intent intent8 = new Intent(CategorySelect.this,GameplayActivity.class);
+                        intent8.putExtra("level",position);
+                        startActivity(intent8);
+                        //music
+                    case 9: Intent intent9 = new Intent(CategorySelect.this,GameplayActivity.class);
+                        intent9.putExtra("level",position);
+                        startActivity(intent9);
                 }
             }
         });

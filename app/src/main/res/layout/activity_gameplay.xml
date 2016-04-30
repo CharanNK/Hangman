@@ -12,11 +12,11 @@
         android:layout_weight = "0.5"
         android:layout_height="0dp"
         android:layout_width="fill_parent"
-        android:gravity="center"
         android:text=""
         android:textSize = "20sp"
         android:textColor = "#ffff"
-        android:textStyle = "bold" />
+        android:textStyle = "bold"
+    />
     <ImageView
         android:id="@+id/imageHanging"
         android:layout_weight = "3"
@@ -333,7 +333,7 @@
         android:layout_weight = "0.5"
         android:layout_height="0dp"
         android:layout_width="fill_parent"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:gravity="center_horizontal"
         android:weightSum="7"
         android:padding="2dp"
@@ -341,13 +341,23 @@
 
         <Button
             android:id="@+id/buttonHome"
-            android:layout_weight="2"
+            android:layout_weight="0"
             android:layout_height="fill_parent"
             android:layout_width="wrap_content"
             android:onClick="goHome"
             android:text="@string/button_go_home"
             android:background="@drawable/letter_up"
-            />
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="30dp" />
+        <Button
+            android:id="@+id/nextOne"
+            android:layout_weight="0"
+            android:layout_height="fill_parent"
+            android:layout_width="wrap_content"
+            android:onClick="nextOne"
+            android:text="@string/button_next"
+            android:background="@drawable/letter_up"
+            android:layout_marginLeft="30dp" />
         <TextView
             android:layout_weight = "1.5"
             android:layout_width="0dp"
