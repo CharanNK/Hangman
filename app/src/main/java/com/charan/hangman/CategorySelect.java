@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 public class CategorySelect extends AppCompatActivity {
     ListView listView;
+    Intent intent;
     String categories[] = {"Movies","Books","Sports","TV Shows","Personalities","Animals","Countries","Fashion","Dictionary","Music"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +32,38 @@ public class CategorySelect extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(CategorySelect.this,GameplayActivity.class);
-                startActivity(intent);
+                switch(position){
+                    case 0: Intent intent = new Intent(CategorySelect.this,GameplayActivity.class);
+                        intent.putExtra("category",0);
+                        startActivity(intent);
+                    case 1: intent = new Intent(CategorySelect.this,GameplayActivity.class);
+                        intent.putExtra("category",1);
+                        startActivity(intent);
+                    case 2:  intent = new Intent(CategorySelect.this,GameplayActivity.class);
+                        intent.putExtra("category",2);
+                        startActivity(intent);
+                    case 3:  intent = new Intent(CategorySelect.this,GameplayActivity.class);
+                        intent.putExtra("category",3);
+                        startActivity(intent);
+                    case 4:  intent = new Intent(CategorySelect.this,GameplayActivity.class);
+                        intent.putExtra("category",4);
+                        startActivity(intent);
+                    case 5:  intent = new Intent(CategorySelect.this,GameplayActivity.class);
+                        intent.putExtra("category",5);
+                        startActivity(intent);
+                    case 6:  intent = new Intent(CategorySelect.this,GameplayActivity.class);
+                        intent.putExtra("category",6);
+                        startActivity(intent);
+                    case 7:  intent = new Intent(CategorySelect.this,GameplayActivity.class);
+                        intent.putExtra("category",7);
+                        startActivity(intent);
+                    case 8:  intent = new Intent(CategorySelect.this,GameplayActivity.class);
+                        intent.putExtra("category",8);
+                        startActivity(intent);
+                    case 9:  intent = new Intent(CategorySelect.this,GameplayActivity.class);
+                        intent.putExtra("category",9);
+                        startActivity(intent);
+                }
             }
         });
 
