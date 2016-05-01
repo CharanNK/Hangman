@@ -120,11 +120,13 @@ public class GameplayActivity extends AppCompatActivity {
     }
 
     private void disableLetter(char c) {
-        char C = Character.toUpperCase(c);
-        String buttonID = "button" + C;
-        int resID = getResources().getIdentifier(buttonID, "id", "com.charan.hangman");
-        Button b = (Button) findViewById(resID);
-        b.setEnabled(false);
+        if(c != ' '){
+            char C = Character.toUpperCase(c);
+            String buttonID = "button" + C;
+            int resID = getResources().getIdentifier(buttonID, "id", "com.charan.hangman");
+            Button b = (Button) findViewById(resID);
+            b.setEnabled(false);
+        }
     }
 
     private String getCurAnser() {
@@ -132,7 +134,9 @@ public class GameplayActivity extends AppCompatActivity {
         for (int i = 0; i < curAnswer.size(); ++i) {
             if (curAnswer.get(i)) {
                 result += (key.charAt(i) + " ");
-            } else {
+            } else {if(key.charAt(i)==' ') {
+                result += "   ";
+            }else
                 result += "_ ";
             }
         }
@@ -177,14 +181,16 @@ public class GameplayActivity extends AppCompatActivity {
         }
 
         Log.d("test", key);
-        Log.d("keylen = ", String.valueOf(key.length()));
 
         curAnswer = new ArrayList<Boolean>();
         for (int i = 0; i < key.length(); i++) {
-            curAnswer.add(false);
+            Log.d("key.char", String.valueOf(key.charAt(i)));
+//            if(key.charAt(i)!=' ')
+                curAnswer.add(false);
         }
         HashSet<Character> letterSet = new HashSet<Character>();
         for (int i = 0; i < key.length(); i++) {
+//            if(key.charAt(i)!=' ')
             letterSet.add(key.charAt(i));
         }
 
@@ -236,9 +242,13 @@ public class GameplayActivity extends AppCompatActivity {
             int j = 0;
             for (Character c : letterSet) {
                 if (j == itemIndex) {
-                    inputLetter(c);
-                    letterSet.remove(c);
-                    break;
+                    Log.d("c", String.valueOf(c));
+                    if(c!=' '){
+                        inputLetter(c);
+                        letterSet.remove(c);
+                        break;
+                    }
+
                 }
                 ++j;
             }
