@@ -84,9 +84,14 @@ public class GameplayActivity extends AppCompatActivity {
           ,  "swallow",  "swan",  "tiger",  "toad",  "tortoise",  "turtle",  "vulture",  "walrus",  "weasel",  "whale",  "wolf",  "zebra"
     };
 
+    private final String[] moviesList = {"A BEAUTIFUL MIND","ELIZABETH SWANN","BATMAN RETURNS"
+
+    };
+
     private final ArrayList<String> easyWords = new ArrayList<String>(Arrays.asList(easylist));
     private final ArrayList<String> dictionaryWords = new ArrayList<String>(Arrays.asList(dictionayList));
     private final ArrayList<String> animalWords = new ArrayList<String>(Arrays.asList(animalList));
+    private final ArrayList<String> movieWords = new ArrayList<>(Arrays.asList(moviesList));
     private int curlevel = 0;
     private int curMan = 0;
     private ArrayList<Boolean> curAnswer;
@@ -140,7 +145,7 @@ public class GameplayActivity extends AppCompatActivity {
 
         switch (curlevel) {
             case 0:
-                key = easyWords.get(randomGenerator.nextInt(easyWords.size()));
+                key = movieWords.get(randomGenerator.nextInt(movieWords.size()));
                 break;
             case 1:
                 key = easyWords.get(randomGenerator.nextInt(easyWords.size()));
@@ -253,7 +258,7 @@ public class GameplayActivity extends AppCompatActivity {
         TextView textFill = (TextView) findViewById(R.id.textFill);
 
         if (isComplete) {
-           // imageHanging.setImageResource(R.drawable.hanggood);
+            imageHanging.setImageResource(R.drawable.hanggood);
             for (int i = 0; i < 26; i++) {
                 char c = (char) ('a' + i);
                 disableLetter(c);
