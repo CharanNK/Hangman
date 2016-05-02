@@ -27,6 +27,7 @@ import java.util.Random;
 
 public class GameplayActivity extends AppCompatActivity {
     private Random randomGenerator = new Random();
+    private static int id = 0;
     private final String[] easylist = {"cat", "sun", "cup", "ghost", "pie", "cow", "banana",
             "bug", "book", "jar",
             "snake", "light", "tree",
@@ -88,19 +89,53 @@ public class GameplayActivity extends AppCompatActivity {
 
     };
 
+    private final String[] movieClues = {"John Nash is a Nobel Laureate in Economics","Portrayed by Keira Knightley",
+    "Starring Michael Keaton as Bruce Wayne"
+    };
+
+    private final String[] tvshowList = { "THE SIMPSONS","SIMON BAKER","GREYS ANATOMY","I LOVE LUCY","JAMES GANDOLFINI","THE X FACTOR",
+    "BAYWATCH","CHARLIE SHEEN","SUPERNATURAL","THE WALKING DEAD","KHLOE KARDASHIAN","STEVE CARELL","ANNE ROBINSON","SOUTH PARK","TRUE BLOOD",
+            "DALLAS","REGIS PHILBIN","EMMY AWARD","AMERICAN IDOL","RACHEL GREEN","THE COSBY SHOW","HOME IMPROVEMENT","GEORGE LOPEZ","GAME OF THRONES",
+    "EASTENDERS","SESAME STREET","PRIME SUSPECT","VERONICA MARS","UGLY BETTY","TINA FEY","AMERICAN DAD","BREAKING BAD","THE WEAKEST LINK",
+    "MARIO LOPEZ","JEREMY CLARKSON","MYTHBUSTERS","CRIMINAL MINDS","DOCTOR WHO","THE BACHELOR","FAMILY GUY","CHRIS HARRISON","JERSEY SHORE",
+    "GENERAL HOSPITAL","ESPN","HANNAH MONTANA","NCIS","THE TWILIGHT ZONE","HELEN MIRREN","DEXTER","LUKE AND LAURA","SOAP OPERA","THE FLINTSTONES",
+    "NIELSEN RATINGS","THE GLEE PROJECT","THE WORD NETWORK","AUSTRALIAN IDOL","USA NETWORK","ALL IN THE FAMILY"
+    };
+
+    private final String[] tvshowClues = {"Lisa and Maggie","Played Patrick Jane in The Mentalist and Nicholas Fallin in The Guardian",
+    "Seattle Grace Mercy West Hospital","Popular black-and-white series in 1950s","Plays lead role in \"The Sopranos\"","A replacement for Pop Idol",
+    "Los Angeles County Lifeguards","Played Charlie Harper in \"Two and a Half Men\"","Two demon hunter brothers","Starring Andrew Lincoln as Rick Grimes",
+    "Has two sisters","Michael Scott in \"The Office\"","Nickname \"Queen of Mean\"","Animated: Bizarre adventures of 4 boys","Based on \"The Southern Vampire Mysteries\" novels",
+    "Famous for \"Who shot J.R.?\" mystery","Hosted \"Who Wants to Be a Millionaire\"","A winged woman holding an atom","The Search for a Superstar",
+    "By Jennifer Aniston","TV's biggest hit in the 1980s","Tim Allen and Pamela Anderson","Manager of Powers & Sons Aviation","Based on George R. R. Martin's novel series \"A Song of Ice and Fire\"",
+    "Centers around the residents of Albert Square","Educational children TV Series","Helen Mirren as Detective Jane Tennison","Played by Kristen Bell",
+    "Played by America Ferrera","Actress: Wrote book \"Bossypants\"","CIA agent Stan Smith and his family","A chemistry teacher enters the world of crime!",
+    "Famous for its host Anne Robinson","hosted \"America's Best Dance Crew\"","One of the presenter of \"Top Gear\"","Science entertainment of Discovery Channel",
+    "Police procedural program","A Time Lord","Reality dating game show debuting in 2002 on ABC","The Griffin family","The Bachelorette and Bachelor Pad",
+    "8 housemates spending their summers at the ____","Starring Anthony Geary and Genie Francis","The Worldwide Leader In Sports","Teenage comedy-drama & musical show",
+    "Starring Mark Harmon as Leroy Jethro Gibbs","Anthology Series","Played Queen Elizabeth","Michael C. Hall in the title role.","Famous couple of \"General Hospital\"",
+    "A drama TV series","About a working class Stone Age man's life","An audience measurement system","American reality television series from Oxygen",
+    "The Undisputed Source for Urban Ministries and Gospel Music","Logie Award-winning singing competition","TV Channel: Slogan \"Characters Welcome\".",
+    "Main protagonist Archie Bunker"
+    };
+
     private final ArrayList<String> easyWords = new ArrayList<String>(Arrays.asList(easylist));
     private final ArrayList<String> dictionaryWords = new ArrayList<String>(Arrays.asList(dictionayList));
     private final ArrayList<String> animalWords = new ArrayList<String>(Arrays.asList(animalList));
     private final ArrayList<String> movieWords = new ArrayList<>(Arrays.asList(moviesList));
+    private final ArrayList<String> tvshowWords = new ArrayList<String>(Arrays.asList(tvshowList));
     private int curlevel = 0;
     private int curMan = 0;
     private ArrayList<Boolean> curAnswer;
     private String key;
+    private String[] clueList;
     Runnable runnable;
+    ImageView clueimage;
+    TextView cluebox;
 
     public static Integer[] mThumbIds = {
 
-            R.drawable.hang8,R.drawable.hang9,R.drawable.hang10,R.drawable.hang11
+            R.drawable.hang9,R.drawable.hang10,R.drawable.hang11
 
     };
 
@@ -149,38 +184,41 @@ public class GameplayActivity extends AppCompatActivity {
 
         switch (curlevel) {
             case 0:
-                key = movieWords.get(randomGenerator.nextInt(movieWords.size()));
+                clueList= movieClues;
+                key = movieWords.get(id=randomGenerator.nextInt(movieWords.size()));
                 break;
             case 1:
-                key = easyWords.get(randomGenerator.nextInt(easyWords.size()));
+                key = easyWords.get(id=randomGenerator.nextInt(easyWords.size()));
                 break;
             case 2:
-                key = dictionaryWords.get(randomGenerator.nextInt(dictionaryWords.size()));
+                key = dictionaryWords.get(id=randomGenerator.nextInt(dictionaryWords.size()));
                 break;
             case 3:
-                key = easyWords.get(randomGenerator.nextInt(easyWords.size()));
+                clueList = tvshowClues;
+                key = tvshowWords.get(id=randomGenerator.nextInt(tvshowWords.size()));
                 break;
             case 4:
-                key = dictionaryWords.get(randomGenerator.nextInt(dictionaryWords.size()));
+                key = dictionaryWords.get(id=randomGenerator.nextInt(dictionaryWords.size()));
                 break;
             case 5:
-                key = animalWords.get(randomGenerator.nextInt(animalWords.size()));
+                key = animalWords.get(id=randomGenerator.nextInt(animalWords.size()));
                 break;
             case 6:
-                key = dictionaryWords.get(randomGenerator.nextInt(dictionaryWords.size()));
+                key = dictionaryWords.get(id=randomGenerator.nextInt(dictionaryWords.size()));
                 break;
             case 7:
-                key = dictionaryWords.get(randomGenerator.nextInt(dictionaryWords.size()));
+                key = dictionaryWords.get(id=randomGenerator.nextInt(dictionaryWords.size()));
                 break;
             case 8:
-                key = dictionaryWords.get(randomGenerator.nextInt(dictionaryWords.size()));
+                key = dictionaryWords.get(id=randomGenerator.nextInt(dictionaryWords.size()));
                 break;
             case 9:
-                key = dictionaryWords.get(randomGenerator.nextInt(dictionaryWords.size()));
+                key = dictionaryWords.get(id=randomGenerator.nextInt(dictionaryWords.size()));
                 break;
         }
 
         Log.d("test", key);
+        Log.d("id", String.valueOf(id));
 
         curAnswer = new ArrayList<Boolean>();
         for (int i = 0; i < key.length(); i++) {
@@ -268,7 +306,7 @@ public class GameplayActivity extends AppCompatActivity {
         TextView textFill = (TextView) findViewById(R.id.textFill);
 
         if (isComplete) {
-            imageHanging.setImageResource(R.drawable.hanggood);
+            imageHanging.setImageResource(R.drawable.hanggood1);
             for (int i = 0; i < 26; i++) {
                 char c = (char) ('a' + i);
                 disableLetter(c);
@@ -276,6 +314,16 @@ public class GameplayActivity extends AppCompatActivity {
             textFill.setText(getCurAnser());
             return;
         }
+
+        clueimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(clueList.length<id){
+                    cluebox.setText("Sorry,no clues available");
+                } else
+                cluebox.setText(clueList[id]);
+            }
+        });
 
         //not complete
         if (curMan < 8) {
@@ -358,6 +406,9 @@ public class GameplayActivity extends AppCompatActivity {
         TextView textLevel = (TextView) findViewById(R.id.textLevel);
         TextView textFill = (TextView) findViewById(R.id.textFill);
 
+        clueimage = (ImageView) findViewById(R.id.clueimage);
+        cluebox = (TextView) findViewById(R.id.cluebox);
+
         selectKey();
         switch (curlevel) {
             case 0:
@@ -368,6 +419,27 @@ public class GameplayActivity extends AppCompatActivity {
                 break;
             case 2:
                 textLevel.setText("SPORTS");
+                break;
+            case 3:
+                textLevel.setText("TV SHOWS");
+                break;
+            case 4:
+                textLevel.setText("PERSONALITIES");
+                break;
+            case 5:
+                textLevel.setText("ANIMALS");
+                break;
+            case 6:
+                textLevel.setText("COUNTRIES");
+                break;
+            case 7:
+                textLevel.setText("FASHION");
+                break;
+            case 8:
+                textLevel.setText("DICTIONARY");
+                break;
+            case 9:
+                textLevel.setText("MUSIC");
                 break;
         }
         textFill.setText(getCurAnser());
@@ -394,6 +466,7 @@ public class GameplayActivity extends AppCompatActivity {
 
     public void clickLetter(View view) {
         curMan++;
+        Log.d("Curman", String.valueOf(curMan));
         switch (view.getId()) {
             case R.id.buttonA:
                 inputLetter('a');
