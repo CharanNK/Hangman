@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_weight="0.2"
-        android:background="@drawable/back">
+        android:background="@drawable/cluebox_background">
         <ImageView
             android:layout_width="35dp"
             android:layout_height="35dp"

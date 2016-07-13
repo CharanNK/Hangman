@@ -34,66 +34,6 @@ import jxl.Workbook;
 public class GameplayActivity extends AppCompatActivity {
     private Random randomGenerator = new Random();
     private static int id = 0;
-    private final String[] easylist = {"cat", "sun", "cup", "ghost", "pie", "cow", "banana",
-            "bug", "book", "jar",
-            "snake", "light", "tree",
-            "lips", "apple", "slide",
-            "socks", "smile", "swing",
-            "coat", "shoe", "water",
-            "heart", "hat", "ocean",
-            "kite", "dog", "mouth",
-            "milk", "duck", "eyes", "bird", "boy",
-            "apple", "person", "girl",
-            "mouse", "ball", "house",
-            "star", "nose", "bed",
-            "whale", "jacket", "shirt",
-            "beach", "egg",
-            "face", "cookie", "cheese",
-            "dance", "skip", "jumping", "jack",
-            "shark", "chicken", "alligator",
-            "chair", "robot", "head",
-            "smile", "baseball", "bird",
-            "happy", "scissors", "cheek",
-            "back", "jump", "drink",
-            "ice", "cream", "cone", "car", "airplane",
-            "clap", "circle", "pillow",
-            "pinch", "kick", "dog",
-            "basketball", "sleep", "camera",
-            "prayer", "elephant", "blink",
-            "doll", "spider", "point",
-            "kite", "homework", "ladybug",
-            "bed", "bird", "gum",
-            "book", "dress", "queen",
-            "puppy", "happy", "doctor"
-    };
-
-
-    private final String[] dictionayList = {
-            "autocade", "apprehensible", "apicad"," aeroscope", "authorizable", "alimony" ,"asahigawa" ,"astigmia" ,
-            "ascham" ,"acousmas", "adactylous", "aloneness" ,"american", "anadarko", "asthmatical", "arcuated", "ambagious", "antimoniate",
-            "ashlaring", "achab", "acting", "abridge", "armary" ,"antimatter",
-            "arborous", "antihero" ,"ambidextrously", "aboiteau", "automatograph" ,"absinth", "arcadianly",  "ambrosia",
-            "ataxite",  "alternation", "ambulacra" ,"acetic", "adlerian", "armorist", "algorithmic", "allmouth", "aurelia", "asterodia",
-            "annelida",
-            "antique",
-            "antonio",
-            "aboveground",
-            "agatho"
-    };
-
-    private final String[] animalList = {
-            "alligator","ant","bear", "bee", "bird", "camel", "cat","cheetah", "chicken"
-            ,"chimpanzee","cow","crocodile","deer","dog","dolphin","duck"
-            ,"eagle","elephant","fish","fly","fox","frog","giraffe"
-            ,"goat","goldfish","hamster",  "hippopotamus",  "horse",  "kangaroo",  "kitten",  "leopard",  "lion",  "lizard",  "lobster"
-          ,  "monkey",  "octopus",  "ostrich",  "otter",  "owl",  "oyster",  "panda",  "parrot",  "pelican",  "pig",  "pigeon",  "porcupine"
-            ,  "puppy",  "rabbit",  "rat", "reindeer",  "rhinoceros",  "rooster",  "scorpion",  "seal",  "shark",  "sheep",  "shrimp",  "snail",  "snake",  "sparrow",  "spider",  "squid",  "squirrel"
-          ,  "swallow",  "swan",  "tiger",  "toad",  "tortoise",  "turtle",  "vulture",  "walrus",  "weasel",  "whale",  "wolf",  "zebra"
-    };
-
-    private final ArrayList<String> easyWords = new ArrayList<String>(Arrays.asList(easylist));
-    private final ArrayList<String> dictionaryWords = new ArrayList<String>(Arrays.asList(dictionayList));
-    private final ArrayList<String> animalWords = new ArrayList<String>(Arrays.asList(animalList));
     private int curlevel = 0;
     private int curMan = 0;
     private ArrayList<Boolean> curAnswer;
@@ -166,7 +106,7 @@ public class GameplayActivity extends AppCompatActivity {
                 getQuestion("tvshows.xls",0);
                 break;
             case 4:
-                key = dictionaryWords.get(id=randomGenerator.nextInt(dictionaryWords.size()));
+                getQuestion("dictionary.xls",0);//need replacement
                 break;
             case 5:
                 getQuestionAdvanced("pokemon.xls",1);
@@ -175,7 +115,7 @@ public class GameplayActivity extends AppCompatActivity {
                 getQuestion("places.xls",1);
                 break;
             case 7:
-                key = dictionaryWords.get(id=randomGenerator.nextInt(dictionaryWords.size()));
+                getQuestion("dictionary.xls",0);//need replacement
                 break;
             case 8:
                 getQuestionAdvanced("vocabulary.xls",0);
@@ -250,14 +190,15 @@ public class GameplayActivity extends AppCompatActivity {
             Workbook workbook = Workbook.getWorkbook(inputStream);
             Sheet sheet = workbook.getSheet(0);
             int row = sheet.getRows();
-//            int column = sheet.getColumns();
-//            String gameRow="";
             String tag="";
 
             int i = (int)(Math.random()*row);
             Cell wordcell = sheet.getCell(0,i);
+            //Key stored at column1
             key = wordcell.getContents();
+            //Primary clue stored at column2
             Cell primaryClueCell = sheet.getCell(1,i);
+            //Secondary clue stored at column3
             Cell additionalClueCell = sheet.getCell(2,i);
             tag=additionalClueCell.getContents();
             if(tag.isEmpty()||tag==null)
@@ -281,13 +222,16 @@ public class GameplayActivity extends AppCompatActivity {
             Workbook workbook = Workbook.getWorkbook(inputStream);
             Sheet sheet = workbook.getSheet(0);
             int row = sheet.getRows();
-//            int column = sheet.getColumns();
             String gameRow="";
             String tag="";
 
+            //Generate a random number which will be the row
             int i = (int)(Math.random()*row);
+            //get the first cell in that row getcell(column,row)
             Cell wordcell = sheet.getCell(0,i);
+            //fetch the row contents
             gameRow = wordcell.getContents();
+            //split it to get the key and clue
             String[] gameWord = gameRow.split("\\|\\|");
             key = gameWord[0];
             Log.i("Word",key);
