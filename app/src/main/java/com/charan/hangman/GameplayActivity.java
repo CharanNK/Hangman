@@ -45,7 +45,7 @@ public class GameplayActivity extends AppCompatActivity {
 
     public static Integer[] mThumbIds = {
 
-            R.drawable.hang9,R.drawable.hang10,R.drawable.hang11
+            R.drawable.hang8,R.drawable.hang9,R.drawable.hang10
 
     };
 
@@ -304,7 +304,7 @@ public class GameplayActivity extends AppCompatActivity {
                 imageHanging.setImageResource(R.drawable.hang6);
                 break;
             case 7:
-                imageHanging.setImageResource(R.drawable.hang8);
+                imageHanging.setImageResource(R.drawable.hang7);
                 break;
             case 8:
                 final Handler handler = new Handler();
