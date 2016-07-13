@@ -19,14 +19,13 @@ import java.util.ArrayList;
 
 public class CategorySelect extends AppCompatActivity {
     ListView listView;
-    String categories[] = {"Movies","Books","Sports","TV Shows","Personalities","Animals","Countries","Fashion","Dictionary","Music"};
+    String categories[] = {"Movies","Dictionary","Sports","TV Shows","Personalities","Pokemon","Countries","Fashion","Vocabulary","Music"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category_select);
 
         listView = (ListView)findViewById(R.id.listView);
-        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.single_row,categories);
         listView.setAdapter(new HangAdapter(this));
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -101,8 +100,8 @@ public class CategorySelect extends AppCompatActivity {
             String[] description = resources.getStringArray(R.array.descriptions);
             int[] images = {R.drawable.ic_movie_black_24dp,R.drawable.ic_import_contacts_black_24dp,
                     R.drawable.ic_rowing_black_24dp,R.drawable.ic_subscriptions_black_24dp,R.drawable.ic_face_black_24dp,
-                    R.drawable.ic_android_black_24dp,R.drawable.ic_language_black_24dp,R.drawable.ic_local_mall_black_24dp,
-                    R.drawable.ic_library_music_black_24dp,R.drawable.ic_audiotrack_black_24dp};
+                    R.drawable.pokeball,R.drawable.ic_language_black_24dp,R.drawable.ic_local_mall_black_24dp,
+                    R.drawable.vocabulary,R.drawable.ic_library_music_black_24dp};
 
             for (int i=0;i<=9;i++){
                 list.add(new SingleRow(category[i],description[i],images[i]));

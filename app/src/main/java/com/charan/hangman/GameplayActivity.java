@@ -2,6 +2,7 @@ package com.charan.hangman;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
@@ -20,10 +21,15 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Random;
+
+import jxl.Cell;
+import jxl.Sheet;
+import jxl.Workbook;
 
 public class GameplayActivity extends AppCompatActivity {
     private Random randomGenerator = new Random();
@@ -85,50 +91,14 @@ public class GameplayActivity extends AppCompatActivity {
           ,  "swallow",  "swan",  "tiger",  "toad",  "tortoise",  "turtle",  "vulture",  "walrus",  "weasel",  "whale",  "wolf",  "zebra"
     };
 
-    private final String[] moviesList = {"A BEAUTIFUL MIND","ELIZABETH SWANN","BATMAN RETURNS"
-
-    };
-
-    private final String[] movieClues = {"John Nash is a Nobel Laureate in Economics","Portrayed by Keira Knightley",
-    "Starring Michael Keaton as Bruce Wayne"
-    };
-
-    private final String[] tvshowList = { "THE SIMPSONS","SIMON BAKER","GREYS ANATOMY","I LOVE LUCY","JAMES GANDOLFINI","THE X FACTOR",
-    "BAYWATCH","CHARLIE SHEEN","SUPERNATURAL","THE WALKING DEAD","KHLOE KARDASHIAN","STEVE CARELL","ANNE ROBINSON","SOUTH PARK","TRUE BLOOD",
-            "DALLAS","REGIS PHILBIN","EMMY AWARD","AMERICAN IDOL","RACHEL GREEN","THE COSBY SHOW","HOME IMPROVEMENT","GEORGE LOPEZ","GAME OF THRONES",
-    "EASTENDERS","SESAME STREET","PRIME SUSPECT","VERONICA MARS","UGLY BETTY","TINA FEY","AMERICAN DAD","BREAKING BAD","THE WEAKEST LINK",
-    "MARIO LOPEZ","JEREMY CLARKSON","MYTHBUSTERS","CRIMINAL MINDS","DOCTOR WHO","THE BACHELOR","FAMILY GUY","CHRIS HARRISON","JERSEY SHORE",
-    "GENERAL HOSPITAL","ESPN","HANNAH MONTANA","NCIS","THE TWILIGHT ZONE","HELEN MIRREN","DEXTER","LUKE AND LAURA","SOAP OPERA","THE FLINTSTONES",
-    "NIELSEN RATINGS","THE GLEE PROJECT","THE WORD NETWORK","AUSTRALIAN IDOL","USA NETWORK","ALL IN THE FAMILY"
-    };
-
-    private final String[] tvshowClues = {"Lisa and Maggie","Played Patrick Jane in The Mentalist and Nicholas Fallin in The Guardian",
-    "Seattle Grace Mercy West Hospital","Popular black-and-white series in 1950s","Plays lead role in \"The Sopranos\"","A replacement for Pop Idol",
-    "Los Angeles County Lifeguards","Played Charlie Harper in \"Two and a Half Men\"","Two demon hunter brothers","Starring Andrew Lincoln as Rick Grimes",
-    "Has two sisters","Michael Scott in \"The Office\"","Nickname \"Queen of Mean\"","Animated: Bizarre adventures of 4 boys","Based on \"The Southern Vampire Mysteries\" novels",
-    "Famous for \"Who shot J.R.?\" mystery","Hosted \"Who Wants to Be a Millionaire\"","A winged woman holding an atom","The Search for a Superstar",
-    "By Jennifer Aniston","TV's biggest hit in the 1980s","Tim Allen and Pamela Anderson","Manager of Powers & Sons Aviation","Based on George R. R. Martin's novel series \"A Song of Ice and Fire\"",
-    "Centers around the residents of Albert Square","Educational children TV Series","Helen Mirren as Detective Jane Tennison","Played by Kristen Bell",
-    "Played by America Ferrera","Actress: Wrote book \"Bossypants\"","CIA agent Stan Smith and his family","A chemistry teacher enters the world of crime!",
-    "Famous for its host Anne Robinson","hosted \"America's Best Dance Crew\"","One of the presenter of \"Top Gear\"","Science entertainment of Discovery Channel",
-    "Police procedural program","A Time Lord","Reality dating game show debuting in 2002 on ABC","The Griffin family","The Bachelorette and Bachelor Pad",
-    "8 housemates spending their summers at the ____","Starring Anthony Geary and Genie Francis","The Worldwide Leader In Sports","Teenage comedy-drama & musical show",
-    "Starring Mark Harmon as Leroy Jethro Gibbs","Anthology Series","Played Queen Elizabeth","Michael C. Hall in the title role.","Famous couple of \"General Hospital\"",
-    "A drama TV series","About a working class Stone Age man's life","An audience measurement system","American reality television series from Oxygen",
-    "The Undisputed Source for Urban Ministries and Gospel Music","Logie Award-winning singing competition","TV Channel: Slogan \"Characters Welcome\".",
-    "Main protagonist Archie Bunker"
-    };
-
     private final ArrayList<String> easyWords = new ArrayList<String>(Arrays.asList(easylist));
     private final ArrayList<String> dictionaryWords = new ArrayList<String>(Arrays.asList(dictionayList));
     private final ArrayList<String> animalWords = new ArrayList<String>(Arrays.asList(animalList));
-    private final ArrayList<String> movieWords = new ArrayList<>(Arrays.asList(moviesList));
-    private final ArrayList<String> tvshowWords = new ArrayList<String>(Arrays.asList(tvshowList));
     private int curlevel = 0;
     private int curMan = 0;
     private ArrayList<Boolean> curAnswer;
     private String key;
-    private String[] clueList;
+    private String clue;
     Runnable runnable;
     ImageView clueimage;
     TextView cluebox;
@@ -170,7 +140,7 @@ public class GameplayActivity extends AppCompatActivity {
             if (curAnswer.get(i)) {
                 result += (key.charAt(i) + " ");
             } else {if(key.charAt(i)==' ') {
-                result += "   ";
+                result += "    ";
             }else
                 result += "_ ";
             }
@@ -184,36 +154,34 @@ public class GameplayActivity extends AppCompatActivity {
 
         switch (curlevel) {
             case 0:
-                clueList= movieClues;
-                key = movieWords.get(id=randomGenerator.nextInt(movieWords.size()));
+                getQuestion("movies.xls",0);
                 break;
             case 1:
-                key = easyWords.get(id=randomGenerator.nextInt(easyWords.size()));
+                getQuestion("dictionary.xls",0);
                 break;
             case 2:
-                key = dictionaryWords.get(id=randomGenerator.nextInt(dictionaryWords.size()));
+                getQuestion("dictionary.xls",0);
                 break;
             case 3:
-                clueList = tvshowClues;
-                key = tvshowWords.get(id=randomGenerator.nextInt(tvshowWords.size()));
+                getQuestion("tvshows.xls",0);
                 break;
             case 4:
                 key = dictionaryWords.get(id=randomGenerator.nextInt(dictionaryWords.size()));
                 break;
             case 5:
-                key = animalWords.get(id=randomGenerator.nextInt(animalWords.size()));
+                getQuestionAdvanced("pokemon.xls",1);
                 break;
             case 6:
-                key = dictionaryWords.get(id=randomGenerator.nextInt(dictionaryWords.size()));
+                getQuestion("places.xls",1);
                 break;
             case 7:
                 key = dictionaryWords.get(id=randomGenerator.nextInt(dictionaryWords.size()));
                 break;
             case 8:
-                key = dictionaryWords.get(id=randomGenerator.nextInt(dictionaryWords.size()));
+                getQuestionAdvanced("vocabulary.xls",0);
                 break;
             case 9:
-                key = dictionaryWords.get(id=randomGenerator.nextInt(dictionaryWords.size()));
+                getQuestion("music.xls",0);
                 break;
         }
 
@@ -223,7 +191,9 @@ public class GameplayActivity extends AppCompatActivity {
         curAnswer = new ArrayList<Boolean>();
         for (int i = 0; i < key.length(); i++) {
             Log.d("key.char", String.valueOf(key.charAt(i)));
-//            if(key.charAt(i)!=' ')
+            if(key.charAt(i)==' ')
+                curAnswer.add(true);
+            else
                 curAnswer.add(false);
         }
         HashSet<Character> letterSet = new HashSet<Character>();
@@ -250,26 +220,6 @@ public class GameplayActivity extends AppCompatActivity {
             curMan = 0;
             numOfShow= 2;
         }
-//        else if(numOfLetters>6&&numOfLetters<9){
-//            curMan=0;
-//            numOfShow=4;
-//        }
-//        else if(numOfLetters>9){
-//            curMan=0;
-//            numOfShow=5;
-//        }
-//         if (numOfLetters > numOfBlanks) {
-//            curMan = 0;
-//            numOfShow = (numOfLetters - numOfBlanks);
-//        }
-//    else if (numOfLetters < numOfBlanks) {
-//            curMan = numOfBlanks - numOfLetters;
-//            numOfShow = 0;
-//        } else if(numOfLetters==numOfBlanks){
-//            curMan = 0;
-//            numOfShow = 2;
-//        }
-
 
         Log.d("test", "curMan" + curMan);
 
@@ -290,6 +240,64 @@ public class GameplayActivity extends AppCompatActivity {
                 }
                 ++j;
             }
+        }
+    }
+
+    private void getQuestionAdvanced(String file, int includeTag) {
+        try {
+            AssetManager assetManager = getAssets();
+            InputStream inputStream = assetManager.open(file);
+            Workbook workbook = Workbook.getWorkbook(inputStream);
+            Sheet sheet = workbook.getSheet(0);
+            int row = sheet.getRows();
+//            int column = sheet.getColumns();
+//            String gameRow="";
+            String tag="";
+
+            int i = (int)(Math.random()*row);
+            Cell wordcell = sheet.getCell(0,i);
+            key = wordcell.getContents();
+            Cell primaryClueCell = sheet.getCell(1,i);
+            Cell additionalClueCell = sheet.getCell(2,i);
+            tag=additionalClueCell.getContents();
+            if(tag.isEmpty()||tag==null)
+            {
+                tag="";
+            }else tag="+"+tag;
+            if(includeTag>0){
+                clue=primaryClueCell.getContents()+tag;
+            }else
+                clue = primaryClueCell.getContents();
+            Log.i("Clue",clue);
+        }catch (Exception e){
+
+        }
+    }
+
+    private void getQuestion(String file,int includeTag) {
+        try {
+            AssetManager assetManager = getAssets();
+            InputStream inputStream = assetManager.open(file);
+            Workbook workbook = Workbook.getWorkbook(inputStream);
+            Sheet sheet = workbook.getSheet(0);
+            int row = sheet.getRows();
+//            int column = sheet.getColumns();
+            String gameRow="";
+            String tag="";
+
+            int i = (int)(Math.random()*row);
+            Cell wordcell = sheet.getCell(0,i);
+            gameRow = wordcell.getContents();
+            String[] gameWord = gameRow.split("\\|\\|");
+            key = gameWord[0];
+            Log.i("Word",key);
+            if(includeTag>0){
+                tag=gameWord[2];
+                clue=gameWord[1]+"+"+tag;
+            }else
+            clue = gameWord[1];
+        }catch (Exception e){
+
         }
     }
 
@@ -318,10 +326,10 @@ public class GameplayActivity extends AppCompatActivity {
         clueimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(clueList.length<id){
+                if(clue==null){
                     cluebox.setText("Sorry,no clues available");
                 } else
-                cluebox.setText(clueList[id]);
+                cluebox.setText(clue);
             }
         });
 
@@ -415,7 +423,7 @@ public class GameplayActivity extends AppCompatActivity {
                 textLevel.setText("MOVIES");
                 break;
             case 1:
-                textLevel.setText("BOOKS");
+                textLevel.setText("DICTIONARY");
                 break;
             case 2:
                 textLevel.setText("SPORTS");
@@ -427,7 +435,7 @@ public class GameplayActivity extends AppCompatActivity {
                 textLevel.setText("PERSONALITIES");
                 break;
             case 5:
-                textLevel.setText("ANIMALS");
+                textLevel.setText("POKEMON");
                 break;
             case 6:
                 textLevel.setText("COUNTRIES");
@@ -436,7 +444,7 @@ public class GameplayActivity extends AppCompatActivity {
                 textLevel.setText("FASHION");
                 break;
             case 8:
-                textLevel.setText("DICTIONARY");
+                textLevel.setText("VOCABULARY");
                 break;
             case 9:
                 textLevel.setText("MUSIC");
@@ -469,82 +477,82 @@ public class GameplayActivity extends AppCompatActivity {
         Log.d("Curman", String.valueOf(curMan));
         switch (view.getId()) {
             case R.id.buttonA:
-                inputLetter('a');
+                inputLetter('A');
                 break;
             case R.id.buttonB:
-                inputLetter('b');
+                inputLetter('B');
                 break;
             case R.id.buttonC:
-                inputLetter('c');
+                inputLetter('C');
                 break;
             case R.id.buttonD:
-                inputLetter('d');
+                inputLetter('D');
                 break;
             case R.id.buttonE:
-                inputLetter('e');
+                inputLetter('E');
                 break;
             case R.id.buttonF:
-                inputLetter('f');
+                inputLetter('F');
                 break;
             case R.id.buttonG:
-                inputLetter('g');
+                inputLetter('G');
                 break;
             case R.id.buttonH:
-                inputLetter('h');
+                inputLetter('H');
                 break;
             case R.id.buttonI:
-                inputLetter('i');
+                inputLetter('I');
                 break;
             case R.id.buttonJ:
-                inputLetter('j');
+                inputLetter('J');
                 break;
             case R.id.buttonK:
-                inputLetter('k');
+                inputLetter('K');
                 break;
             case R.id.buttonL:
-                inputLetter('l');
+                inputLetter('L');
                 break;
             case R.id.buttonM:
-                inputLetter('m');
+                inputLetter('M');
                 break;
             case R.id.buttonN:
-                inputLetter('n');
+                inputLetter('N');
                 break;
             case R.id.buttonO:
-                inputLetter('o');
+                inputLetter('O');
                 break;
             case R.id.buttonP:
-                inputLetter('p');
+                inputLetter('P');
                 break;
             case R.id.buttonQ:
-                inputLetter('q');
+                inputLetter('Q');
                 break;
             case R.id.buttonR:
-                inputLetter('r');
+                inputLetter('R');
                 break;
             case R.id.buttonS:
-                inputLetter('s');
+                inputLetter('S');
                 break;
             case R.id.buttonT:
-                inputLetter('t');
+                inputLetter('T');
                 break;
             case R.id.buttonU:
-                inputLetter('u');
+                inputLetter('U');
                 break;
             case R.id.buttonV:
-                inputLetter('v');
+                inputLetter('V');
                 break;
             case R.id.buttonW:
-                inputLetter('w');
+                inputLetter('W');
                 break;
             case R.id.buttonX:
-                inputLetter('x');
+                inputLetter('X');
                 break;
             case R.id.buttonY:
-                inputLetter('y');
+                inputLetter('Y');
                 break;
             case R.id.buttonZ:
-                inputLetter('z');
+                inputLetter('Z');
                 break;
         }
 

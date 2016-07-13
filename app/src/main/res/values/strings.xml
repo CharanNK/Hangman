@@ -2,27 +2,27 @@
     <string name="app_name">Hangman</string>
     <string-array name="category">
         <item>MOVIES</item>
-        <item>BOOKS</item>
+        <item>DICTIONARY</item>
         <item>SPORTS</item>
         <item>TV SHOWS</item>
         <item>PERSONALITIES</item>
-        <item>ANIMALS</item>
+        <item>POKEMON</item>
         <item>COUNTRIES</item>
         <item>FASHION</item>
-        <item>DICTIONARY</item>
+        <item>VOCABULARY</item>
         <item>MUSIC</item>
     </string-array>
 
     <string-array name="descriptions">
         <item>Movies, Actors, Awards and More</item>
-        <item>Books and Authors</item>
+        <item>Simple words.</item>
         <item>Sports and Sportsmen</item>
         <item>TV Serials, Actors, Awards etc</item>
         <item>Famous persons</item>
-        <item>All about Animals</item>
+        <item>All about Pokemons</item>
         <item>Explore the World !</item>
         <item>Clothes, Shoes, Accessories etc</item>
-        <item>Play and learn new words</item>
+        <item>Hard words. Helps in GRE!</item>
         <item>Musicians</item>
     </string-array>
     <string name="title_activity_gameplay">GameplayActivity</string>
