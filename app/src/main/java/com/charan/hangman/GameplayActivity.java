@@ -96,34 +96,34 @@ public class GameplayActivity extends AppCompatActivity {
 
         switch (curlevel) {
             case 0:
-                getQuestion("movies.xls",0);
+                getQuestion("movies.xls");
                 break;
             case 1:
-                getQuestion("dictionary.xls",0);
+                getQuestion("dictionary.xls");
                 break;
             case 2:
-                getQuestion("dictionary.xls",0);
+                getQuestion("sports.xls");
                 break;
             case 3:
-                getQuestion("tvshows.xls",0);
+                getQuestion("tvshows.xls");
                 break;
             case 4:
-                getQuestion("dictionary.xls",0);//need replacement
+                getQuestion("dictionary.xls");//need replacement
                 break;
             case 5:
-                getQuestionAdvanced("pokemon.xls",1);
+                getQuestionAdvanced("pokemon.xls",1," + ");
                 break;
             case 6:
-                getQuestion("places.xls",1);
+                getQuestionAdvanced("places.xls",1," ");
                 break;
             case 7:
-                getQuestion("dictionary.xls",0);//need replacement
+                getQuestion("dictionary.xls");//need replacement
                 break;
             case 8:
-                getQuestionAdvanced("vocabulary.xls",0);
+                getQuestionAdvanced("vocabulary.xls",0," ");
                 break;
             case 9:
-                getQuestion("music.xls",0);
+                getQuestion("music.xls");
                 break;
         }
 
@@ -185,7 +185,7 @@ public class GameplayActivity extends AppCompatActivity {
         }
     }
 
-    private void getQuestionAdvanced(String file, int includeTag) {
+    private void getQuestionAdvanced(String file, int includeTag,String tagText) {
         try {
             AssetManager assetManager = getAssets();
             InputStream inputStream = assetManager.open(file);
@@ -206,7 +206,7 @@ public class GameplayActivity extends AppCompatActivity {
             if(tag.isEmpty()||tag==null)
             {
                 tag="";
-            }else tag="+"+tag;
+            }else tag=tagText+tag;
             if(includeTag>0){
                 clue=primaryClueCell.getContents()+tag;
             }else
@@ -217,7 +217,7 @@ public class GameplayActivity extends AppCompatActivity {
         }
     }
 
-    private void getQuestion(String file,int includeTag) {
+    private void getQuestion(String file) {
         try {
             AssetManager assetManager = getAssets();
             InputStream inputStream = assetManager.open(file);
@@ -237,10 +237,6 @@ public class GameplayActivity extends AppCompatActivity {
             String[] gameWord = gameRow.split("\\|\\|");
             key = gameWord[0];
             Log.i("Word",key);
-            if(includeTag>0){
-                tag=gameWord[2];
-                clue=gameWord[1]+" of "+tag;
-            }else
             clue = gameWord[1];
         }catch (Exception e){
 

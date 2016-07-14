@@ -17,13 +17,13 @@
         <item>Movies, Actors, Awards and More</item>
         <item>Simple words.</item>
         <item>Sports and Sportsmen</item>
-        <item>TV Serials, Actors, Awards etc</item>
+        <item>TV Serials,Cartoons, Actors, Awards etc</item>
         <item>Famous persons</item>
         <item>All about Pokemons</item>
-        <item>Explore the World !</item>
+        <item>Countries and Capitals</item>
         <item>Clothes, Shoes, Accessories etc</item>
-        <item>Hard words. Helps in GRE!</item>
-        <item>Musicians</item>
+        <item>Difficult words. Helps in GRE!</item>
+        <item>Musicians,Albums,Singers etc</item>
     </string-array>
     <string name="title_activity_gameplay">GameplayActivity</string>
 
