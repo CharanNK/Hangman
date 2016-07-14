@@ -21,6 +21,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".GameplayActivity"
             android:screenOrientation="portrait"></activity>
+        <activity android:name=".GameWin" android:screenOrientation="portrait"/>
+        <activity android:name=".GameLose" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

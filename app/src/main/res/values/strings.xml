@@ -53,7 +53,16 @@
     <string name="button_letter_x">X</string>
     <string name="button_letter_y">Y</string>
     <string name="button_letter_z">Z</string>
+
     <string name="button_go_home">HOME</string>
     <string name="button_next">NEXT ONE</string>
+
+    <string name="win_congrats">Congrats</string>
+    <string name="you_won">YOU WON!</string>
+    <string name="lose_sorry">Sorry</string>
+    <string name="you_lose">YOU LOSE :(</string>
+
+    <string name="yes">YES</string>
+    <string name="no">NO</string>
 
 </resources>

@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/loginbgthree"
+    android:background="@drawable/loginbgsixx"
+    android:theme="@style/AppTheme"
    >
 
     <TextView
@@ -14,7 +15,7 @@
         android:layout_width="fill_parent"
         android:text=""
         android:textSize = "18sp"
-        android:textColor = "#d50000"
+        android:textColor = "@color/category_text_color"
         android:textStyle = "bold"
     />
     <TextView
@@ -30,20 +31,21 @@
         android:layout_weight="0.2"
         android:background="@drawable/cluebox_background">
         <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:src="@drawable/questionmark"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_help_white_24dp"
             android:layout_gravity="center"
             android:paddingLeft="10dp"
             android:paddingRight="0dp"
-            android:layout_weight="0.2"
             android:id="@+id/clueimage" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textColor="#000000"
+            android:textColor="@color/clue_text_color"
             android:id="@+id/cluebox"
             android:layout_weight="8"
+            android:layout_marginLeft="3dp"
+            android:gravity="center"
             android:textSize="20sp" />
     </LinearLayout>
     <TextView
@@ -363,6 +365,10 @@
 
     </LinearLayout>
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.2"></LinearLayout>
+    <!--LinearLayout
         android:layout_weight = "0.5"
         android:layout_height="0dp"
         android:layout_width="fill_parent"
@@ -370,7 +376,8 @@
         android:gravity="center_horizontal"
         android:weightSum="7"
         android:padding="2dp"
-        android:textSize = "14sp" >
+        android:textSize = "14sp"
+        android:visibility="gone">
 
         <Button
             android:id="@+id/buttonHome"
@@ -395,16 +402,7 @@
             android:layout_weight = "1.5"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:text="" />
-        <!--Button
-            android:id="@+id/buttonNext"
-            android:layout_weight="2"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:onClick="nextOne"
-            android:text="@string/button_next"
-            android:background= "@drawable/buttonnextonestyle"
-            android:textColor = "@drawable/nextonecolor"
-            /-->
-    </LinearLayout>
+            android:text=""
+            android:visibility="visible"/>
+    </LinearLayout-->
 </LinearLayout>

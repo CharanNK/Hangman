@@ -1,6 +1,7 @@
 package com.charan.hangman;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Color;
@@ -8,6 +9,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.support.v4.app.NavUtils;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Spannable;
@@ -237,7 +239,7 @@ public class GameplayActivity extends AppCompatActivity {
             Log.i("Word",key);
             if(includeTag>0){
                 tag=gameWord[2];
-                clue=gameWord[1]+"+"+tag;
+                clue=gameWord[1]+" of "+tag;
             }else
             clue = gameWord[1];
         }catch (Exception e){
@@ -258,7 +260,10 @@ public class GameplayActivity extends AppCompatActivity {
         TextView textFill = (TextView) findViewById(R.id.textFill);
 
         if (isComplete) {
-            imageHanging.setImageResource(R.drawable.hanggood1);
+//            imageHanging.setImageResource(R.drawable.hanggood1);
+            Intent intent = new Intent(this,GameWin.class);
+            intent.putExtra("level", curlevel);
+            startActivity(intent);
             for (int i = 0; i < 26; i++) {
                 char c = (char) ('a' + i);
                 disableLetter(c);
@@ -338,10 +343,21 @@ public class GameplayActivity extends AppCompatActivity {
 
                 for (int i = 0; i < curAnswer.size(); ++i) {
                     if (!curAnswer.get(i)) {
-                        text.setSpan(new ForegroundColorSpan(Color.GRAY), 2 * i, 2 * i + 1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+                        text.setSpan(new ForegroundColorSpan(Color.GREEN), 2 * i, 2 * i + 1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
                     }
                 }
                 textFill.setText(text, TextView.BufferType.SPANNABLE);
+
+                final Handler lose_handler = new Handler();
+                Runnable lose_runnable = new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(getApplicationContext(),GameLose.class);
+                        intent.putExtra("level", curlevel);
+                        intent.putExtra("answer",key);
+                        startActivity(intent);                    }
+                };
+                lose_handler.postDelayed(lose_runnable,2000);
                 break;
         }
     }
@@ -516,10 +532,24 @@ public class GameplayActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-        intent.addCategory(Intent.CATEGORY_HOME);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
+
+        new AlertDialog.Builder(GameplayActivity.this)
+                .setTitle("Leave Game!")
+                .setMessage("Are you sure you want to leave the game ?")
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // continue with delete
+                        Intent intent = new Intent(getApplicationContext(),CategorySelect.class);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing
+                    }
+                })
+                .setIcon(R.drawable.alert_icon)
+                .show();
     }
 
     @Override
