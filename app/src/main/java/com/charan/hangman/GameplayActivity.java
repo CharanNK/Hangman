@@ -108,7 +108,7 @@ public class GameplayActivity extends AppCompatActivity {
                 getQuestion("tvshows.xls");
                 break;
             case 4:
-                getQuestion("dictionary.xls");//need replacement
+                getQuestionAdvanced("people.xls",0,"");
                 break;
             case 5:
                 getQuestionAdvanced("pokemon.xls",1," + ");
@@ -117,10 +117,10 @@ public class GameplayActivity extends AppCompatActivity {
                 getQuestionAdvanced("places.xls",1," ");
                 break;
             case 7:
-                getQuestion("dictionary.xls");//need replacement
+                getQuestionAdvanced("fashion.xls",1,"");
                 break;
             case 8:
-                getQuestionAdvanced("vocabulary.xls",0," ");
+                getQuestionAdvanced("vocabulary.xls",0,"");
                 break;
             case 9:
                 getQuestion("music.xls");
@@ -200,6 +200,7 @@ public class GameplayActivity extends AppCompatActivity {
             key = wordcell.getContents();
             //Primary clue stored at column2
             Cell primaryClueCell = sheet.getCell(1,i);
+            clue = primaryClueCell.getContents();
             //Secondary clue stored at column3
             Cell additionalClueCell = sheet.getCell(2,i);
             tag=additionalClueCell.getContents();
@@ -207,11 +208,12 @@ public class GameplayActivity extends AppCompatActivity {
             {
                 tag="";
             }else tag=tagText+tag;
+
             if(includeTag>0){
-                clue=primaryClueCell.getContents()+tag;
+                clue=clue+tag;
             }else
-                clue = primaryClueCell.getContents();
-            Log.i("Clue",clue);
+                clue = clue;
+            Log.d("Clue",clue);
         }catch (Exception e){
 
         }

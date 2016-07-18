@@ -38,4 +38,16 @@
         android:layout_marginBottom="93dp"
         android:layout_above="@+id/play_button"
         android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="How To Play?"
+        android:id="@+id/button"
+        android:background="#00ffffff"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="43dp"
+        android:textColor="@color/white"
+        android:onClick="goToInstructions"/>
 </RelativeLayout>

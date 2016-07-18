@@ -64,5 +64,14 @@
 
     <string name="yes">YES</string>
     <string name="no">NO</string>
+    <string name="instruction_title">INSTRUCTIONS</string>
+    <string name="instructions">1.You will be given a word which you have to guess.\n\n2.Words are chosen at random
+        and few letters of the word will be filled.\n\n
+        3.You have to guess the remaining letters of the word.\n\n
+        4.Each time you press a wrong letter one part of the hangman will be formed.\n\n
+        5.You will have 8 tries to guess the correct word.\n\n
+        6.If you fail to guess in 8 tries the man will be hanged.\n\n
+        7.Each time you press a letter that letter in the keypad will be disabled.\n\n
+        8.You can always take a hint by clicking  on the "?" button. Clues are free for this version.</string>
 
 </resources>
