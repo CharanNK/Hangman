@@ -9,6 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 /**
  * Created by CHARAN on 7/14/2016.
  */
@@ -18,6 +21,7 @@ public class GameWin extends AppCompatActivity {
     private FloatingActionButton button_Home;
     private FloatingActionButton button_next;
     int curlevel =0;
+    AdView mAdView;
 
     @Override
     public void onBackPressed() {
@@ -40,6 +44,10 @@ public class GameWin extends AppCompatActivity {
 
         button_Home = (FloatingActionButton)findViewById(R.id.button_Home);
         button_next = (FloatingActionButton)findViewById(R.id.button_next);
+
+        mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         curlevel = extras.getInt("level");
 

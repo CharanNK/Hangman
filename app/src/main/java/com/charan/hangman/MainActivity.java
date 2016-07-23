@@ -1,10 +1,12 @@
 package com.charan.hangman;
 
 import android.app.ActionBar;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Debug;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -52,5 +54,19 @@ public class MainActivity extends AppCompatActivity {
     public void goToInstructions(View view) {
         Intent intent = new Intent(this,InstructionsActivity.class);
         startActivity(intent);
+    }
+
+    public void showDeveloper(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("About Developer");
+        builder.setMessage("Charan N K !")
+                .setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //do things
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 }

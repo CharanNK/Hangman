@@ -9,6 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 /**
  * Created by CHARAN on 7/14/2016.
  */
@@ -20,6 +23,7 @@ public class GameLose extends AppCompatActivity {
     private TextView lose_answer;
     int curlevel =0;
     String answer = null;
+    AdView mAdView;
 
     @Override
     public void onBackPressed() {
@@ -48,6 +52,10 @@ public class GameLose extends AppCompatActivity {
 
         button_Home = (FloatingActionButton)findViewById(R.id.button_Home);
         button_next = (FloatingActionButton)findViewById(R.id.button_next);
+
+        mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         button_Home.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -74,4 +74,6 @@
         7.Each time you press a letter that letter in the keypad will be disabled.\n\n
         8.You can always take a hint by clicking  on the "?" button. Clues are free for this version.</string>
 
+    <string name="banner_ad_unit_id">ca-app-pub-3894268392664867/5568853631</string>
+
 </resources>

@@ -10,7 +10,7 @@
 
     <TextView
         android:id="@+id/textLevel"
-        android:layout_weight = "0.2"
+        android:layout_weight = "0.3"
         android:layout_height="0dp"
         android:layout_width="fill_parent"
         android:text=""

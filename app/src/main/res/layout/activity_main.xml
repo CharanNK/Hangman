@@ -50,4 +50,15 @@
         android:layout_marginBottom="43dp"
         android:textColor="@color/white"
         android:onClick="goToInstructions"/>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/devButton"
+        android:src="@drawable/person"
+        android:background="#00ffffff"
+        android:onClick="showDeveloper"
+        android:layout_alignTop="@+id/button"
+        android:layout_alignRight="@+id/swag_header"
+        android:layout_alignEnd="@+id/swag_header" />
 </RelativeLayout>
